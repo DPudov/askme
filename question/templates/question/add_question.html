@@ -1,0 +1,58 @@
+{% extends "question/base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- Begin page content -->
+    <main role="main" class="container" xmlns="http://www.w3.org/1999/html">
+        <div class="container">
+            <h1>New Question</h1>
+        </div>
+        <div class="container">
+
+            <div class="col-xs-8 col-lg-8 well">
+                <form>
+                    <div class="container row">
+                        <p>Fill all the fields!</p>
+
+                        <div>
+                            <label for="title" class="col-sm-4"><b>Title</b></label>
+                            <input type="text" placeholder="Enter Title" name="title" required>
+                        </div>
+                        <div>
+                            <label for="description" class="col-sm-4"><b>Description</b></label>
+                            <textarea type="text" placeholder="Enter description" name="description"  cols="40" rows="10"></textarea>
+                        </div>
+                        <div>
+                            <label for="tags" class="col-sm-4"><b>Tags</b></label>
+                            <input type="text" placeholder="Enter tags" name="tags">
+                        </div>
+
+                        <div class="container row col-sm-4">
+                            <button type="submit" class="btn-primary">ASK!</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-3 tags-column well">
+                <p class="text-danger">Popular tags</p>
+                {% for tag in tags %}
+                    {% if tag.is_popular %}
+                        <div class="row tag-item">
+                            {{ tag.name }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <p class="text-primary">Best users</p>
+                {% for user in users %}
+                    {% if user.is_popular %}
+                        <div class="row tag-item">
+                            {{ user.get_username }}
+                        </div>
+                    {% endif %}ll
+                {% endfor %}
+            </div>
+        </div>
+
+    </main>
+{% endblock %}

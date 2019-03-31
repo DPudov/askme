@@ -1,0 +1,68 @@
+{% extends "question/base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- Begin page content -->
+    <main role="main" class="container">
+        <div class="container">
+            <h1>REGISTRATION</h1>
+        </div>
+        <div class="container">
+
+            <div class="col-xs-8 col-lg-8 well">
+                <form>
+                    <div class="container">
+                        <p>Please fill in this form to create an account.</p>
+
+                        <div>
+                            <label for="username" class="col-sm-4"><b>Username</b></label>
+                            <input type="text" placeholder="Enter Username" name="username" required>
+                        </div>
+                        <div>
+                            <label for="email" class="col-sm-4"><b>Email</b></label>
+                            <input type="text" placeholder="Enter Email" name="email" required>
+                        </div>
+                        <div>
+                            <label for="psw" class="col-sm-4"><b>Password</b></label>
+                            <input type="password" placeholder="Enter Password" name="psw" required>
+                        </div>
+                        <div>
+                            <label for="psw-repeat" class="col-sm-4"><b>Repeat Password</b></label>
+                            <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                        </div>
+                        <div>
+                            <label for="psw-repeat" class="col-sm-4"><b>Upload avatar</b></label>
+                            <input type="file" placeholder="Repeat Password" name="psw-repeat" required>
+                        </div>
+                        <div class="container col-sm-4">
+                            <button type="submit" class="btn-primary">Register!</button>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <p>Already have an account? <a href="#">Sign in</a>.</p>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xs-3 tags-column well">
+                <p class="text-danger">Popular tags</p>
+                {% for tag in tags %}
+                    {% if tag.is_popular %}
+                        <div class="row tag-item">
+                            {{ tag.name }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <p class="text-primary">Best users</p>
+                {% for user in users %}
+                    {% if user.is_popular %}
+                        <div class="row tag-item">
+                            {{ user.get_username }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+    </main>
+{% endblock %}

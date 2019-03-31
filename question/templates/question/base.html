@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AskPudov.ru</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="DPudov">
+    <meta name="description" content="Awesome Technopark project">
+    <meta name="keywords" content="Technopark, Web, Pudov">
+{#    <link rel="stylesheet"#}
+{#          href="{% static "css/bootstrap.min.css" %}">#}
+    <link rel="author">
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/askme.css" %}">
+</head>
+<body>
+<header>
+ <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">AskPudov.ru</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group input-group">
+                        <input type="text" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span
+                                class="glyphicon glyphicon-user"></span>
+                            Hello, {{ user.get_username }} </a>
+                            <ul id="navbar-settings" class="dropdown-menu">
+                                <li>
+                                    <a href="settings.html">Settings</a>
+                                </li>
+                                <li>
+                                    <a href="#">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span
+                                    class="caret"></span></a>
+                            <ul id="login-dp" class="dropdown-menu">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form" role="form" method="post" action="/login/"
+                                                  accept-charset="UTF-8" id="login-nav">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="inputEmail">Email
+                                                        address</label>
+                                                    <input type="text" class="form-control" id="inputEmail"
+                                                           placeholder="Email address" required="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="inputPassword">Password</label>
+                                                    <input type="password" class="form-control"
+                                                           id="inputPassword" placeholder="Password"
+                                                           required="">
+                                                    <div class="help-block text-right"><a href="">Forget the password
+                                                        ?</a></div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary btn-block">Sign in
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="bottom text-center">
+                                            New here ? <a href="#"><b>Sign Up</b></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% block navbar %}
+{% endblock %}
+</header>
+
+{% block content %}
+{% endblock %}
+
+
+<script src="{% static "js/jquery.min.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+</body>
+</html>
